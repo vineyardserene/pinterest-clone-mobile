@@ -1,33 +1,15 @@
 <template>
-    <div class="bg-white p-4">
-      <!-- Header Section -->
-      <HeaderSection :currentTab="currentTab" :setTab="setTab" />
-  
-      <!-- Search and Filter Section -->
-      <SearchFilter />
-  
-      <!-- Main Content -->
-      <div class="flex-1 overflow-y-auto p-4">
-        <GridItems />
-      </div>
-  
-      <!-- Navigation -->
-      <Navigation />
-    </div>
-  </template>
+  <div class="space-y-3"> <!-- Memberikan jarak vertikal -->
+    <Search /> <!-- Komponen Search -->
+    <Filter type="board" /> <!-- Komponen Filter -->
+  </div>
+</template>
+
   
   <script setup>
-  import HeaderSection from '../components/HeaderSection.vue';
-  import SearchFilter from '../components/SearchFilter.vue';
-  import GridItems from '../components/GridItems.vue';
-  import Navigation from '../views/NavigationPage.vue';
-  
-  import { ref } from 'vue';
-  
-  const currentTab = ref('Pins');
-  
-  const setTab = (tab) => {
-    currentTab.value = tab;
-  };
+  import Filter from './FilterButtons.vue';
+    import Search from './SearchProfile.vue'; // Path relatif ke komponen Search
+ 
   </script>
   
+ 

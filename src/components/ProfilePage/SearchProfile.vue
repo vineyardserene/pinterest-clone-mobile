@@ -12,22 +12,6 @@
         </div>
         <button class="text-black text-2xl" @click="addItem">+</button>
       </div>
-  
-      <!-- Filter Buttons -->
-      <div class="flex space-x-2">
-        <button class="flex items-center px-4 py-2 border rounded-full" @click="filterFavorites">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#5f6368">
-            <path d="M120-520v-320h320v320H120Zm0 400v-320h320v320H120Zm400-400v-320h320v320H520Zm0 400v-320h320v320H520ZM200-600h160v-160H200v160Zm400 0h160v-160H600v160Zm0 400h160v-160H600v160Zm-400 0h160v-160H200v160Zm400-400Zm0 240Zm-240 0Zm0-240Z" />
-          </svg>
-        </button>
-        <button class="flex items-center px-4 py-2 border rounded-full" @click="filterFavorites">
-          <i class="fas fa-star"></i>
-          <span>Favorites</span>
-        </button>
-        <button class="flex items-center px-4 py-2 border rounded-full" @click="filterCreated">
-          <span>Created by you</span>
-        </button>
-      </div>
     </div>
   </template>
   

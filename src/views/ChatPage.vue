@@ -1,54 +1,52 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen bg-white p-4">
     <!-- Header -->
-    <header class="flex justify-between items-center p-4 border-b border-gray-300">
-      <!-- Navigasi tab -->
-      <nav class="flex space-x-4 mx-auto">
-        <div
-          v-for="tab in tabs"
-          :key="tab.name"
-          @click="setActiveTab(tab.name)"
-          :class="{
-            'font-bold border-b-2 border-black': activeTab === tab.name,
-            'font-normal': activeTab !== tab.name,
-          }"
-          class="cursor-pointer text-center"
+    <div class="flex items-center justify-between relative">
+      <!-- Tab Buttons -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 flex space-x-8">
+        <button
+          class="pb-2 font-semibold"
+          :class="{ 'text-black border-b-2 border-black': activeTab === 'Updates', 'text-gray-500': activeTab !== 'Updates' }"
+          @click="setTab('Updates')"
         >
-          {{ tab.label }}
-        </div>
-      </nav>
-      <!-- Ikon pengaturan hanya tampil saat tab aktif adalah 'updates' -->
-      <i v-if="activeTab === 'updates'" class="fas fa-sliders-h text-2xl text-black"></i>
-    </header>
+          Updates
+        </button>
+        <button
+          class="pb-2 font-semibold"
+          :class="{ 'text-black border-b-2 border-black': activeTab === 'Inbox', 'text-gray-500': activeTab !== 'Inbox' }"
+          @click="setTab('Inbox')"
+        >
+          Inbox
+        </button>
+      </div>
 
-    <!-- Konten Utama -->
-    <main class="flex-1 overflow-y-auto p-4 pb-16">
-      <!-- Gunakan komponen sesuai tab aktif -->
-      <UpdatesTab v-if="activeTab === 'updates'" :chatItems="chatItems" />
-      <InboxTab v-if="activeTab === 'inbox'" />
-    </main>
+      <!-- Ikon Pengaturan dengan Placeholder -->
+      <div class="ml-auto">
+        <i
+          class="fas fa-sliders-h text-2xl text-black"
+          :class="{ 'invisible': activeTab !== 'Updates' }"
+        ></i>
+      </div>
+    </div>
 
-    <!-- Footer -->
-    <Navigation class="fixed bottom-0 left-0 w-full bg-white shadow-md"></Navigation>
+    <!-- Content Rendered Based on Active Tab -->
+    <div class="mt-4">
+      <component :is="currentComponent" :chat-items="chatItems" />
+    </div>
   </div>
+  <NavigationPage />
 </template>
 
+
 <script setup>
-import { ref } from 'vue';
-import Navigation from '../views/NavigationPage.vue';
+import { ref, computed } from 'vue';
 import UpdatesTab from '../components/ChatPage/UpdatesTab.vue';
 import InboxTab from '../components/ChatPage/InboxTab.vue';
+import NavigationPage from './NavigationPage.vue';
 
-// Tab aktif default adalah 'updates'
-const activeTab = ref('updates');
+const activeTab = ref('Updates');
 
-// Daftar tab yang tersedia
-const tabs = [
-  { name: 'updates', label: 'Updates' },
-  { name: 'inbox', label: 'Inbox' },
-];
-
-// Daftar item chat
+// Chat items data
 const chatItems = [
   { title: "Wallpaper ponsel for you", time: "1w", img: "https://storage.googleapis.com/a1aa/image/zCxOVQuXT94sOJ0kjAM5fGOmozOdFt6GjBaaroXLD6G6NO5JA.jpg" },
   { title: "Explore ideas related to Walpaper Laptop Estetik Quotes", time: "1w" },
@@ -60,8 +58,13 @@ const chatItems = [
   { title: "Explore ideas related to Header Game Interactive", time: "1mo" },
 ];
 
-// Fungsi untuk mengubah tab aktif
-const setActiveTab = (tab) => {
+// Tentukan komponen yang akan dirender berdasarkan tab
+const currentComponent = computed(() => {
+  return activeTab.value === 'Updates' ? UpdatesTab : InboxTab;
+});
+
+// Fungsi untuk mengubah tab
+const setTab = (tab) => {
   activeTab.value = tab;
 };
 </script>
