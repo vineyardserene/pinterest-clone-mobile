@@ -5,6 +5,7 @@ import HomePage from '@/views/HomePage.vue';
 import SearchPage from '@/views/SearchPage.vue'; 
 import AddPage from '@/components/AddPage.vue'; 
 import ChatPage from '@/views/ChatPage.vue'; 
+import ProfilePage from '@/views/ProfilePage.vue'; 
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: '/chat',
     name: 'chat',
     component: ChatPage,
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfilePage,
   },
 ];
 

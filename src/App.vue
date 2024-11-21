@@ -1,6 +1,5 @@
 <script setup> 
-	import Layout from '@/views/Layout.vue'
-	
+	import Navigation from '@/views/NavigationPage.vue'
 </script>
 
 <template>

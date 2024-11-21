@@ -1,5 +1,5 @@
 {
-  "name": "pocemonce",
+  "name": "pinterest",
   "version": "1.0.0",
   "main": "postcss.config.js",
   "dependencies": {
@@ -15,6 +15,7 @@
     "estree-walker": "^2.0.2",
     "follow-redirects": "^1.15.9",
     "form-data": "^4.0.1",
+    "ionicons": "^7.4.0",
     "magic-string": "^0.30.12",
     "mime-db": "^1.52.0",
     "mime-types": "^2.1.35",
